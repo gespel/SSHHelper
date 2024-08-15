@@ -1,5 +1,7 @@
-use std::process::Command;
+mod ssh_helper;
+
 use clap::Parser;
+use ssh_helper::SSHHelper;
 
 /// SSH Tunnel Tool
 #[derive(Parser, Debug)]
@@ -26,19 +28,9 @@ struct Args {
     name: String,
 }
 
+
 fn main() {
     let args = Args::parse();
-
-    if cfg!(target_os = "windows") {
-        Command::new("cmd")
-            .args(["/C", format!("ssh -N -L {}:{}:{} {} -l {}", args.local_port, args.remote_ip, args.remote_port, args.connect_ip, args.name).as_str()])
-            .output()
-            .expect("failed to execute process");
-    } else {
-        Command::new("sh")
-            .arg("-c")
-            .arg("echo hello")
-            .output()
-            .expect("failed to execute process");
-    }    
+    let sshh = SSHHelper::new(args.local_port, args.remote_ip, args.remote_port, args.connect_ip, args.name);
+    sshh.run();
 }
