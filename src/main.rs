@@ -1,28 +1,28 @@
 use std::process::Command;
 use clap::Parser;
 
-/// ssh tunnel tool
+/// SSH Tunnel Tool
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
     /// Number of local port to tunnel
-    #[arg(long)]
+    #[arg(long, short = 'l')]
     local_port: u16,
 
     /// IP to tunnel on target machine
-    #[arg(long)]
+    #[arg(long, short = 'r')]
     remote_ip: String,
 
     /// Number of remote port (on target machine)
-    #[arg(long)]
+    #[arg(long, short = 'p')]
     remote_port: u16,
 
     /// IP the helper is supposed to connect 
-    #[arg(long)]
+    #[arg(long, short = 'c')]
     connect_ip: String,
 
     /// Username to use for the connection
-    #[arg(long)]
+    #[arg(long, short = 'n')]
     name: String,
 }
 
