@@ -1,7 +1,9 @@
-mod ssh_helper;
+mod core {
+    pub mod ssh_helper;
+}
 
 use clap::Parser;
-use ssh_helper::SSHHelper;
+use core::ssh_helper::SSHHelper;
 
 /// SSH Tunnel Tool
 #[derive(Parser, Debug)]
