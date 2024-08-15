@@ -3,7 +3,7 @@ mod core {
 }
 
 use clap::Parser;
-use core::ssh_helper::SSHHelper;
+use core::ssh_helper::SSHHelperTunnel;
 
 /// SSH Tunnel Tool
 #[derive(Parser, Debug)]
@@ -33,6 +33,6 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    let sshh = SSHHelper::new(args.local_port, args.remote_ip, args.remote_port, args.connect_ip, args.name);
+    let sshh = SSHHelperTunnel::new(args.local_port, args.remote_ip, args.remote_port, args.connect_ip, args.name);
     sshh.run();
 }

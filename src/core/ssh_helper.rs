@@ -1,6 +1,6 @@
 use std::process::Command;
 
-pub struct SSHHelper {
+pub struct SSHHelperTunnel {
     local_port: u16,
     remote_ip: String,
     remote_port: u16,
@@ -8,15 +8,15 @@ pub struct SSHHelper {
     name: String
 }
 
-impl SSHHelper {
+impl SSHHelperTunnel {
     pub fn new(
         local_port: u16,
         remote_ip: String, 
         remote_port: u16, 
         connect_ip: String, 
         name: String
-    ) -> SSHHelper {
-        SSHHelper {
+    ) -> SSHHelperTunnel {
+        SSHHelperTunnel {
             local_port,
             remote_ip,
             remote_port,
